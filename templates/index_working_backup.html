@@ -1,0 +1,1706 @@
+﻿        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Light/Dark Mode Variables */
+        :root {
+            --tmobile-magenta: #E20074;
+            --tmobile-magenta-dark: #AC0058;
+            --accent-pink: #FF6B9D;
+            --accent-purple: #9B26AF;
+        }
+        
+        /* Dark Mode (Default) */
+        body {
+            --bg-primary: #000000;
+            --bg-secondary: #2B2B2B;
+            --bg-tertiary: #1A1A1A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #E0E0E0;
+            --text-muted: #CCCCCC;
+            --border-color: rgba(226, 0, 116, 0.3);
+            --panel-bg: linear-gradient(135deg, #2B2B2B 0%, #1A1A1A 100%);
+            --shadow: rgba(0,0,0,0.5);
+        }
+        
+        /* Light Mode */
+        body.light-mode {
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F5F5F5;
+            --bg-tertiary: #E8E8E8;
+            --text-primary: #1A1A1A;
+            --text-secondary: #2B2B2B;
+            --text-muted: #666666;
+            --border-color: rgba(226, 0, 116, 0.2);
+            --panel-bg: linear-gradient(135deg, #FFFFFF 0%, #F5F5F5 100%);
+            --shadow: rgba(0,0,0,0.1);
+        }
+        
+        body { 
+            font-family: 'T-Mobile Headline', 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+        
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--tmobile-magenta);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(226, 0, 116, 0.6);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(226, 0, 116, 0.8);
+        }
+        .theme-toggle i {
+            font-size: 1.5em;
+            color: white;
+        }
+        
+        /* Hero Header - T-Mobile Style */
+        .header { 
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
+            padding: 70px 40px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid var(--tmobile-magenta);
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(226, 0, 116, 0.15), transparent 60%);
+            pointer-events: none;
+        }
+        .header h1 { 
+            font-size: 4.5em; 
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: -3px;
+            position: relative;
+            z-index: 1;
+        }
+        .header h1 .brand {
+            color: var(--tmobile-magenta);
+            text-shadow: 0 0 30px rgba(226, 0, 116, 0.8);
+        }
+        .header h1 i {
+            color: var(--tmobile-magenta);
+            margin-right: 20px;
+            filter: drop-shadow(0 0 20px rgba(226, 0, 116, 0.6));
+        }
+        .header .tagline { 
+            font-size: 1.4em;
+            opacity: 0.9;
+            font-weight: 400;
+            max-width: 900px;
+            margin: 0 auto 15px;
+            position: relative;
+            z-index: 1;
+            color: var(--text-secondary);
+        }
+        .header .summary {
+            font-size: 1.1em;
+            opacity: 0.8;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px 30px;
+            background: rgba(226, 0, 116, 0.1);
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            position: relative;
+            z-index: 1;
+            color: var(--text-muted);
+        }
+        
+        /* Tab Navigation - Modern T-Mobile Style */
+        .tabs { 
+            display: flex;
+            background: var(--bg-secondary);
+            box-shadow: 0 4px 20px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid var(--tmobile-magenta);
+        }
+        .tab { 
+            flex: 1;
+            padding: 22px 30px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.05em;
+            border-bottom: 4px solid transparent;
+            transition: all 0.3s ease;
+            color: var(--text-muted);
+            background: var(--bg-secondary);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+        .tab i {
+            margin-right: 10px;
+            font-size: 1.2em;
+            vertical-align: middle;
+        }
+        .tab:hover { 
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border-bottom-color: var(--accent-pink);
+        }
+        .tab.active { 
+            border-bottom-color: var(--tmobile-magenta);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            box-shadow: inset 0 -4px 0 var(--tmobile-magenta);
+        }
+        
+        /* Tab Content */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        /* Containers - Bold T-Mobile Layout */
+        .container { 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            padding: 40px 30px;
+        }
+        .panel { 
+            background: var(--panel-bg);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px var(--shadow), 0 0 0 2px var(--border-color);
+            border: 2px solid rgba(226, 0, 116, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--tmobile-magenta), var(--accent-pink));
+        }
+        .panel h2 { 
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            font-size: 2em;
+            font-weight: 900;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--border-color);
+            letter-spacing: -1px;
+        }
+        .panel h2 i {
+            color: var(--tmobile-magenta);
+            margin-right: 12px;
+        }
+        .panel p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.05em;
+        }
+        
+        /* Map - Dark Theme */
+        #map { 
+            width: 100%;
+            height: 600px;
+            border-radius: 12px;
+            border: 3px solid rgba(226, 0, 116, 0.3);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+        
+        /* Grid Display - Bold T-Mobile Style */
+        .grid-display { 
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .grid-cell { 
+            padding: 35px;
+            text-align: center;
+            border: 3px solid var(--border-color);
+            border-radius: 12px;
+            font-weight: 700;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 1.1em;
+            position: relative;
+            overflow: hidden;
+        }
+        .grid-cell::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(226, 0, 116, 0.2), transparent);
+            transition: 0.5s;
+        }
+        .grid-cell:hover::before {
+            left: 100%;
+        }
+        .grid-cell.active { 
+            background: linear-gradient(135deg, var(--tmobile-magenta), var(--accent-pink));
+            border-color: var(--tmobile-magenta);
+            color: white;
+            transform: scale(1.08);
+            box-shadow: 0 12px 40px rgba(226, 0, 116, 0.6);
+            font-size: 1.3em;
+        }
+        .grid-cell.done { 
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            color: white;
+            border-color: var(--accent-pink);
+            box-shadow: 0 8px 24px rgba(255, 107, 157, 0.4);
+        }
+        
+        /* Buttons - T-Mobile CTA Style */
+        .btn { 
+            padding: 18px 40px;
+            font-size: 1.05em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            margin: 10px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        .btn:hover { 
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        }
+        .btn i {
+            margin-right: 8px;
+        }
+        .btn-primary { 
+            background: linear-gradient(135deg, var(--tmobile-magenta), var(--tmobile-magenta-dark));
+            color: var(--tmobile-white);
+            border: 2px solid var(--tmobile-magenta);
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #FF0080, var(--tmobile-magenta));
+            box-shadow: 0 8px 30px rgba(226, 0, 116, 0.6);
+        }
+        .btn-success { 
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            color: var(--tmobile-white);
+            border: 2px solid var(--accent-pink);
+        }
+        .btn-success:hover {
+            box-shadow: 0 8px 30px rgba(255, 107, 157, 0.6);
+        }
+        .btn-danger { 
+            background: linear-gradient(135deg, #E53935, #C62828);
+            color: var(--tmobile-white);
+            border: 2px solid #E53935;
+        }
+        .btn-danger:hover {
+            box-shadow: 0 8px 30px rgba(229, 57, 53, 0.6);
+        }
+        .btn-warning { 
+            background: linear-gradient(135deg, #FF6B00, #E65100);
+            color: var(--tmobile-white);
+            border: 2px solid #FF6B00;
+        }
+        .btn-warning:hover {
+            box-shadow: 0 8px 30px rgba(255, 107, 0, 0.6);
+        }
+        .btn:disabled { 
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+            filter: grayscale(1);
+        }
+        
+        /* Speed Test Cards - Bold T-Mobile Design */
+        .speed-cards { 
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 30px 0;
+        }
+        .speed-card { 
+            padding: 50px 40px;
+            border-radius: 16px;
+            text-align: center;
+            color: var(--tmobile-white);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        .speed-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .speed-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.6);
+        }
+        .speed-card h3 { 
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+        .speed-card h3 i {
+            font-size: 1.5em;
+            display: block;
+            margin-bottom: 15px;
+        }
+        .speed-card .value { 
+            font-size: 4em;
+            font-weight: 900;
+            margin: 20px 0;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .speed-card .unit { 
+            font-size: 1.2em;
+            opacity: 0.8;
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+        }
+        .card-download { 
+            background: linear-gradient(135deg, var(--tmobile-magenta) 0%, var(--tmobile-magenta-dark) 100%);
+        }
+        .card-upload { 
+            background: linear-gradient(135deg, #FF6B00 0%, #E65100 100%);
+        }
+        .card-ping { 
+            background: linear-gradient(135deg, var(--accent-pink) 0%, var(--accent-purple) 100%);
+        }
+        
+        /* Quality Bar - T-Mobile Style */
+        .quality-bar { 
+            height: 60px;
+            border-radius: 30px;
+            background: linear-gradient(to right, #E53935, #FF6B00, #FFD700, #4CAF50, #008F7A);
+            margin: 30px 0;
+            position: relative;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.3), inset 0 2px 8px rgba(0,0,0,0.2);
+            border: 3px solid rgba(255,255,255,0.1);
+        }
+        .quality-indicator { 
+            position: absolute;
+            top: -10px;
+            width: 8px;
+            height: 80px;
+            background: linear-gradient(180deg, var(--tmobile-white), var(--tmobile-magenta));
+            box-shadow: 0 4px 16px rgba(226, 0, 116, 0.8);
+            transition: left 0.5s ease;
+            border-radius: 4px;
+        }
+        .quality-text { 
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: 900;
+            margin-top: 20px;
+            color: var(--tmobile-white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        
+        /* Chat - Modern T-Mobile Messaging Style */
+        .chat-container { 
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+        .chat-messages { 
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px;
+            background: var(--bg-tertiary);
+            border-radius: 16px;
+            margin-bottom: 25px;
+            border: 2px solid var(--border-color);
+            box-shadow: inset 0 2px 10px var(--shadow);
+        }
+        .chat-messages::-webkit-scrollbar {
+            width: 10px;
+        }
+        .chat-messages::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+        }
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: var(--tmobile-magenta);
+            border-radius: 10px;
+        }
+        .chat-message { 
+            margin-bottom: 20px;
+            padding: 18px 26px;
+            border-radius: 24px;
+            max-width: 85%;
+            word-wrap: break-word;
+            animation: slideIn 0.4s ease;
+            line-height: 1.7;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .chat-message.user { 
+            background: linear-gradient(135deg, var(--tmobile-magenta), var(--accent-pink));
+            color: var(--tmobile-white);
+            margin-left: auto;
+            text-align: right;
+            border-bottom-right-radius: 6px;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        .chat-message.ai { 
+            background: var(--panel-bg);
+            color: var(--text-secondary);
+            margin-right: auto;
+            border-bottom-left-radius: 6px;
+            border: 2px solid var(--border-color);
+        }
+        .chat-message.ai p {
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+        .chat-message.ai code {
+            background: var(--bg-tertiary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            color: var(--accent-pink);
+            font-size: 0.95em;
+            border: 1px solid var(--border-color);
+        }
+        .chat-message.ai strong {
+            color: var(--tmobile-magenta);
+            font-weight: 700;
+        }
+        .chat-message.ai em {
+            font-style: italic;
+            color: var(--accent-pink);
+        }
+        .chat-input-area { 
+            display: flex;
+            gap: 15px;
+        }
+        .chat-input { 
+            flex: 1;
+            padding: 18px 26px;
+            font-size: 1.1em;
+            border: 3px solid var(--border-color);
+            border-radius: 30px;
+            outline: none;
+            transition: all 0.3s ease;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+        .chat-input::placeholder {
+            color: var(--text-muted);
+        }
+        .chat-input:focus {
+            border-color: var(--tmobile-magenta);
+            background: var(--bg-tertiary);
+            box-shadow: 0 0 20px rgba(226, 0, 116, 0.4);
+        }
+        .chat-send { 
+            padding: 18px 45px;
+            background: linear-gradient(135deg, var(--tmobile-magenta), var(--accent-pink));
+            color: var(--tmobile-white);
+            border: 2px solid var(--tmobile-magenta);
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(226, 0, 116, 0.4);
+        }
+        .chat-send:hover { 
+            background: linear-gradient(135deg, #FF0080, var(--tmobile-magenta));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(226, 0, 116, 0.6);
+        }
+        .typing { 
+            font-style: italic;
+            color: var(--accent-pink);
+            padding: 15px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        /* Voice Text - T-Mobile Style Alert */
+        #voiceText { 
+            font-size: 1.6em;
+            color: var(--tmobile-white);
+            font-weight: 700;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(226, 0, 116, 0.2), rgba(155, 38, 175, 0.2));
+            border-radius: 16px;
+            min-height: 80px;
+            border-left: 6px solid var(--tmobile-magenta);
+            border: 2px solid rgba(226, 0, 116, 0.3);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        
+        /* Stats - Bold T-Mobile Cards */
+        .stats { 
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin: 30px 0;
+        }
+        .stat-box { 
+            padding: 40px 30px;
+            background: var(--panel-bg);
+            color: var(--text-primary);
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 32px var(--shadow);
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--tmobile-magenta), var(--accent-pink), var(--accent-purple));
+        }
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 48px rgba(226, 0, 116, 0.6);
+            border-color: var(--tmobile-magenta);
+        }
+        .stat-box .number { 
+            font-size: 3.5em;
+            font-weight: 900;
+            color: var(--tmobile-magenta);
+            text-shadow: 0 2px 10px rgba(226, 0, 116, 0.3);
+        }
+        .stat-box .label { 
+            font-size: 1em;
+            opacity: 0.9;
+            margin-top: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        }
+        
+        /* Animations */
+        @keyframes slideIn { 
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Status */
+        .status { 
+            font-size: 1.1em;
+            margin: 18px 0;
+            padding: 15px 20px;
+            background: var(--light-gray);
+            border-radius: 8px;
+            font-weight: 500;
+            color: var(--gray);
+        }
+        .status.active { 
+            background: var(--secondary);
+            color: var(--white);
+        }
+        
+        #analysis, #gridAnalysis { 
+            white-space: pre-wrap;
+            line-height: 1.8;
+            font-size: 1.05em;
+            color: var(--dark);
+        }
+        
+        /* Info boxes */
+        .info-box {
+            background: var(--light-gray);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--primary);
+        }
+        .info-box strong {
+            color: var(--primary);
+        }
+        
+        /* Lists */
+        ol, ul {
+            margin-left: 25px;
+            line-height: 2;
+            color: var(--gray);
+        }
+        
+        code {
+            background: var(--light-gray);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+    
+    <!-- Header -->
+    <div class="header">
+        <h1><i class="fas fa-satellite-dish"></i> <span class="brand">Wi-Find</span></h1>
+        <p class="tagline">Advanced WiFi Analysis & Signal Mapping Platform</p>
+        <p class="summary">Discover, analyze, and optimize your wireless networks with real-time heatmaps, intelligent speed testing, precision grid scanning, and AI-powered recommendations.</p>
+    </div>
+    
+    <!-- Tab Navigation -->
+    <div class="tabs">
+        <div class="tab active" onclick="switchTab('heatmap')"><i class="fas fa-map-marked-alt"></i> Live Heatmap</div>
+        <div class="tab" onclick="switchTab('speedtest')"><i class="fas fa-tachometer-alt"></i> Speed Test</div>
+        <div class="tab" onclick="switchTab('gridscanner')"><i class="fas fa-th"></i> 9-Grid Scanner</div>
+        <div class="tab" onclick="switchTab('chat')"><i class="fas fa-comments"></i> Magenta Assistant</div>
+        <div class="tab" onclick="switchTab('stats')"><i class="fas fa-server"></i> Statistics</div>
+    </div>
+    
+    <!-- HEATMAP TAB -->
+    <div id="tab-heatmap" class="tab-content active">
+        <div class="container">
+            <div class="panel">
+                <h2><i class="fas fa-map-marked-alt"></i> Real-Time WiFi Heatmap</h2>
+                <p style="margin-bottom: 20px;">Walk around with your phone's GPS enabled (OwnTracks app) while Raspberry Pi scans WiFi signals. The map shows signal strength as a colored overlay.</p>
+                <div id="map"></div>
+                <div style="margin-top: 20px;">
+                    <button class="btn btn-danger" onclick="clearHeatmap()"><i class="fas fa-trash-alt"></i> Clear Data</button>
+                    <button class="btn btn-warning" onclick="exportData()"><i class="fas fa-download"></i> Export Data</button>
+                </div>
+            </div>
+            
+            <div class="panel">
+                <h2><i class="fas fa-signal"></i> Current Signal Info</h2>
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="number" id="signalCount">0</div>
+                        <div class="label">Signal Readings</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number" id="currentSignal">-- dBm</div>
+                        <div class="label">Latest Signal</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number" id="currentSSID">--</div>
+                        <div class="label">Connected SSID</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number" id="gpsStatus"><i class="fas fa-times-circle" style="color: #dc3545;"></i></div>
+                        <div class="label">GPS Status</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- SPEED TEST TAB -->
+    <div id="tab-speedtest" class="tab-content">
+        <div class="container">
+            <div class="panel">
+                <h2><i class="fas fa-tachometer-alt"></i> Internet Speed Test (Raspberry Pi)</h2>
+                <p style="margin-bottom: 20px;">Tests the internet speed of your Raspberry Pi's connection</p>
+                
+                <div class="speed-cards">
+                    <div class="speed-card card-download">
+                        <h3><i class="fas fa-download"></i> Download</h3>
+                        <div class="value" id="downloadSpeed">--</div>
+                        <div class="unit">Mbps</div>
+                    </div>
+                    <div class="speed-card card-upload">
+                        <h3><i class="fas fa-upload"></i> Upload</h3>
+                        <div class="value" id="uploadSpeed">--</div>
+                        <div class="unit">Mbps</div>
+                    </div>
+                    <div class="speed-card card-ping">
+                        <h3><i class="fas fa-stopwatch"></i> Ping</h3>
+                        <div class="value" id="pingValue">--</div>
+                        <div class="unit">ms</div>
+                    </div>
+                </div>
+                
+                <div class="quality-bar">
+                    <div class="quality-indicator" id="qualityIndicator"></div>
+                </div>
+                <div class="quality-text" id="qualityText">No data yet</div>
+                
+                <div style="margin-top: 20px; text-align: center;">
+                    <button class="btn btn-primary" onclick="showSpeedTestInstructions()"><i class="fas fa-play-circle"></i> Start Speed Test on Pi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- GRID SCANNER TAB -->
+    <div id="tab-gridscanner" class="tab-content">
+        <div class="container">
+            <div class="panel">
+                <h2><i class="fas fa-th"></i> Zone-Based WiFi Scanner</h2>
+                <p style="margin-bottom: 20px; font-size: 1.1em;">Find the BEST spot for your WiFi router by testing different zones in your room. We'll guide you with voice and visual feedback!</p>
+                
+                <div style="margin: 20px 0; padding: 20px; background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary)); border-radius: 12px; border: 2px solid var(--tmobile-magenta); box-shadow: 0 4px 15px rgba(226, 0, 116, 0.2);">
+                    <h3 style="margin-bottom: 15px; color: var(--tmobile-magenta);"><i class="fas fa-clipboard-list"></i> Step-by-Step Instructions:</h3>
+                    <ol style="line-height: 2.2; font-size: 1.05em;">
+                        <li><strong>Step 1:</strong> Choose between <strong>4 zones</strong> (quick scan) or <strong>9 zones</strong> (detailed scan)</li>
+                        <li><strong>Step 2:</strong> Click "Start Zone Scan" and wait for voice instructions</li>
+                        <li><strong>Step 3:</strong> Walk to each zone when told and <strong>STAND STILL</strong> for 35 seconds</li>
+                        <li><strong>Step 4:</strong> Listen for feedback:
+                            <ul style="margin-top: 5px; line-height: 2;">
+                                <li><i class="fas fa-fire" style="color: #FF6B35;"></i> <strong>"WARMER"</strong> = This zone is better than the last one!</li>
+                                <li><i class="fas fa-snowflake" style="color: #4FC3F7;"></i> <strong>"COLDER"</strong> = Previous zone was better</li>
+                                <li><i class="fas fa-circle" style="color: #00C853;"></i> <strong>Green zone</strong> = Good signal | <i class="fas fa-circle" style="color: #FFC107;"></i> Yellow = OK | <i class="fas fa-circle" style="color: #FF5252;"></i> Red = Bad</li>
+                            </ul>
+                        </li>
+                        <li><strong>Step 5:</strong> Repeat for all zones - we'll tell you the BEST spot at the end!</li>
+                    </ol>
+                    <div style="margin-top: 15px; padding: 12px; background: var(--bg-tertiary); border-radius: 8px; border-left: 4px solid var(--accent-pink);">
+                        <strong><i class="fas fa-lightbulb"></i> Pro Tip:</strong> Stand still and avoid moving during each zone scan for accurate results!
+                    </div>
+                </div>
+                
+                <div id="voiceText" style="font-size: 1.3em; padding: 25px; background: var(--panel-bg); border-radius: 10px; text-align: center; margin: 20px 0; border: 2px solid var(--border-color); min-height: 80px; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-microphone"></i> Ready to start zone scanning...
+                </div>
+                
+                <div id="currentInstruction" style="display: none; margin: 20px 0; padding: 20px; background: var(--tmobile-magenta); color: white; border-radius: 10px; text-align: center; font-size: 1.2em; font-weight: bold; box-shadow: 0 4px 20px rgba(226, 0, 116, 0.4);">
+                </div>
+            </div>
+            
+            <div class="panel">
+                <h2><i class="fas fa-map-marker-alt"></i> Zone Selection</h2>
+                
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <button class="btn btn-primary" onclick="selectZoneMode(4)" style="margin: 0 10px;">
+                        <i class="fas fa-th-large"></i> 4 Zones (Faster)
+                    </button>
+                    <button class="btn btn-primary" onclick="selectZoneMode(9)" style="margin: 0 10px;">
+                        <i class="fas fa-th"></i> 9 Zones (Detailed)
+                    </button>
+                </div>
+                
+                <div class="grid-display" id="gridDisplay">
+                    <!-- Zones will be generated here -->
+                </div>
+                
+                <div class="status" id="gridStatus" style="margin-top: 20px; font-size: 1.2em; padding: 15px; background: var(--bg-tertiary); border-radius: 8px;">
+                    Status: Select zone mode to begin
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="btn btn-success" onclick="startZoneScan()" id="startBtn" disabled>
+                        <i class="fas fa-play-circle"></i> Start Zone Scan
+                    </button>
+                    <button class="btn btn-danger" onclick="stopZoneScan()">
+                        <i class="fas fa-stop-circle"></i> Stop & Reset
+                    </button>
+                </div>
+                
+                <div id="zoneProgress" style="margin-top: 20px; display: none;">
+                    <h3 style="margin-bottom: 10px;"><i class="fas fa-tasks"></i> Current Zone Progress:</h3>
+                    <div style="background: var(--bg-secondary); border-radius: 10px; padding: 15px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>Collecting data...</span>
+                            <span id="progressPercent">0%</span>
+                        </div>
+                        <div style="width: 100%; height: 30px; background: var(--bg-tertiary); border-radius: 15px; overflow: hidden; border: 2px solid var(--border-color);">
+                            <div id="progressBar" style="height: 100%; width: 0%; background: linear-gradient(90deg, var(--tmobile-magenta), var(--accent-pink)); transition: width 0.5s;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel" id="zoneResultsPanel" style="display: none;">
+                <h2><i class="fas fa-trophy"></i> Zone Analysis Results</h2>
+                <div id="zoneResults"></div>
+                <div id="bestZone" style="margin-top: 20px; padding: 20px; background: linear-gradient(135deg, var(--tmobile-magenta), var(--accent-pink)); color: white; border-radius: 10px; text-align: center; font-size: 1.3em;"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- CHAT TAB -->
+    <div id="tab-chat" class="tab-content">
+        <div class="container">
+            <div class="panel">
+                <h2><span style="color: var(--primary);">Magenta</span> - T-Mobile WiFi Assistant</h2>
+                <p style="margin-bottom: 20px;">Your expert assistant for T-Mobile Home Internet and Sagemcom Fast 5688W Gateway optimization</p>
+                
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="chat-message ai">
+                            <strong style="color: #E20074;">Magenta here!</strong> I'm your T-Mobile WiFi expert specializing in optimizing your connection.
+                            <br><br>I can help you with:
+                            <br>â€¢ T-Mobile Home Internet optimization
+                            <br>â€¢ Sagemcom Fast 5688W Gateway configuration
+                            <br>â€¢ 5G signal strength improvement
+                            <br>â€¢ Device placement for best coverage
+                            <br>â€¢ Speed test analysis and troubleshooting
+                            <br>â€¢ WiFi band selection (2.4GHz vs 5GHz)
+                            <br>â€¢ Reducing interference and dead zones
+                            <br><br>Ask me anything to improve your T-Mobile connection!
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" class="chat-input" id="chatInput" placeholder="Ask Magenta about your T-Mobile WiFi..." onkeypress="if(event.key==='Enter') sendChat()">
+                        <button class="chat-send" onclick="sendChat()" id="sendBtn">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- STATS TAB -->
+    <div id="tab-stats" class="tab-content">
+        <div class="container">
+            <div class="panel">
+                <h2><i class="fas fa-chart-bar"></i> System Statistics</h2>
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="number" id="totalSignals">0</div>
+                        <div class="label">Total Signals</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number" id="totalGPS">0</div>
+                        <div class="label">GPS Points</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number" id="speedTests">0</div>
+                        <div class="label">Speed Tests</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number" id="gridScans">0</div>
+                        <div class="label">Grid Positions</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel">
+                <h2><i class="fas fa-server"></i> System Information</h2>
+                <p><strong>Server:</strong> http://10.185.124.107:5000</p>
+                <p><strong>Raspberry Pi:</strong> 10.185.124.49</p>
+                <p><strong>Features:</strong> Live Heatmap, Speed Testing, 9-Grid Scanner, AI Chat</p>
+                <p><strong>Map Library:</strong> Mapbox GL JS v3.0.1 + Heatmap.js v2.0.5</p>
+                <p><strong>AI:</strong> Microsoft Phi-3 (Free, Conversational, Smart)</p>
+                <p><strong>Voice:</strong> ElevenLabs + Windows TTS</p>
+            </div>
+            
+            <div class="panel">
+                <h2><i class="fas fa-tools"></i> Setup Instructions</h2>
+                <h3>For GPS Tracking (OwnTracks):</h3>
+                <ol>
+                    <li>Install OwnTracks app on your phone</li>
+                    <li>Set URL: <code>http://10.185.124.107:5000/api/gps</code></li>
+                    <li>Walk around while Pi scans WiFi</li>
+                </ol>
+                
+                <h3 style="margin-top: 20px;">For Raspberry Pi Client:</h3>
+                <ol>
+                    <li>SSH to Pi: <code>ssh pi@10.185.124.49</code></li>
+                    <li>Run: <code>python3 pi_grid_client.py</code></li>
+                    <li>Pi waits for scan commands from this website</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        alert('ðŸš¨ JAVASCRIPT IS LOADING - Click OK');
+        console.log('ðŸš€ JavaScript is loading...');
+        
+        const socket = io();
+        let currentTab = 'heatmap';
+        let currentPos = 0;
+        let map, heatmapLayer;
+        let signalData = [];
+        let gpsData = [];
+        let stats = {signals: 0, gps: 0, speedTests: 0, gridScans: 0};
+        
+        console.log('âœ… Variables initialized');
+        
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById('tab-' + tabName).classList.add('active');
+            
+            // Find and activate the correct tab button
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                if (tab.getAttribute('onclick').includes(tabName)) {
+                    tab.classList.add('active');
+                }
+            });
+            
+            currentTab = tabName;
+            
+            // Initialize map when heatmap tab is shown
+            if (tabName === 'heatmap' && !map) {
+                initMap();
+            }
+        }
+        
+        socket.on('voice_update', (data) => {
+            document.getElementById('voiceText').textContent = data.text;
+        });
+        
+        socket.on('position_update', (data) => {
+            currentPos = data.position_id;
+            document.getElementById('status').textContent = `Status: Position ${currentPos}/9 - ${data.position_name}`;
+            
+            // Update grid display
+            document.querySelectorAll('.grid-cell').forEach(cell => {
+                cell.classList.remove('active');
+            });
+            document.getElementById('pos' + currentPos).classList.add('active');
+        });
+        
+        socket.on('scan_complete', (data) => {
+            document.getElementById('pos' + data.position_id).classList.add('done');
+            document.getElementById('nextBtn').disabled = false;
+        });
+        
+        socket.on('analysis_update', (data) => {
+            document.getElementById('analysisPanel').style.display = 'block';
+            document.getElementById('analysis').textContent = data.analysis;
+        });
+        
+        function startScan() {
+            fetch('/api/start_scan', {method: 'POST'});
+        }
+        
+        function nextPosition() {
+            document.getElementById('nextBtn').disabled = true;
+            fetch('/api/next_position', {method: 'POST'});
+        }
+        
+        function stopScan() {
+            fetch('/api/stop_scan', {method: 'POST'});
+            location.reload();
+        }
+        
+        // Additional UI functions
+        function initMap() {
+            console.log('Map initialization - Mapbox token needed');
+        }
+        
+        function clearHeatmap() {
+            if (confirm('Clear all data?')) {
+                fetch('/api/clear', {method: 'POST'}).then(() => location.reload());
+            }
+        }
+        
+        function exportData() {
+            window.open('/api/data', '_blank');
+        }
+        
+        function showSpeedTestInstructions() {
+            alert('Run on Raspberry Pi:\\npython3 pi_speedtest_continuous.py');
+        }
+        
+        // ZONE-BASED SCANNING SYSTEM
+        let zoneConfig = {
+            mode: null,  // 4 or 9
+            currentZone: 0,
+            zones: [],
+            zoneData: [],
+            previousSignal: null,
+            scanInterval: null,
+            voiceQueue: [],
+            isVoicePlaying: false,
+            scanDuration: 35000,  // 35 seconds per zone (thorough scan)
+            sampleCount: 0,
+            targetSamples: 70  // 70 samples @ 500ms = 35 seconds
+        };
+        
+        function selectZoneMode(numZones) {
+            zoneConfig.mode = numZones;
+            zoneConfig.zones = [];
+            zoneConfig.zoneData = [];
+            zoneConfig.currentZone = 0;
+            
+            // Generate zone labels
+            if (numZones === 4) {
+                zoneConfig.zones = ['Top-Left', 'Top-Right', 'Bottom-Left', 'Bottom-Right'];
+            } else {
+                zoneConfig.zones = ['Top-Left', 'Top-Center', 'Top-Right', 
+                                   'Middle-Left', 'Center', 'Middle-Right',
+                                   'Bottom-Left', 'Bottom-Center', 'Bottom-Right'];
+            }
+            
+            // Create zone grid display
+            const gridDisplay = document.getElementById('gridDisplay');
+            gridDisplay.innerHTML = '';
+            gridDisplay.style.gridTemplateColumns = numZones === 4 ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)';
+            
+            zoneConfig.zones.forEach((zoneName, index) => {
+                const zoneDiv = document.createElement('div');
+                zoneDiv.className = 'grid-cell';
+                zoneDiv.id = `zone${index}`;
+                zoneDiv.innerHTML = `<strong>Zone ${index + 1}</strong><br>${zoneName}`;
+                gridDisplay.appendChild(zoneDiv);
+            });
+            
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('gridStatus').textContent = `Status: ${numZones} zones configured - Ready to start!`;
+            updateVoiceText(`${numZones} zone mode selected. Click Start Zone Scan to begin!`);
+            
+            // Clear any previous voice and announce selection
+            clearVoiceQueue();
+            setTimeout(() => {
+                speakQueued(`You have selected ${numZones} zone mode. When you're ready, click the green Start Zone Scan button to begin.`, 0);
+            }, 500);
+        }
+        
+        function startZoneScan() {
+            if (!zoneConfig.mode) {
+                alert('Please select 4 or 9 zone mode first!');
+                return;
+            }
+            
+            zoneConfig.currentZone = 0;
+            zoneConfig.zoneData = [];
+            zoneConfig.previousSignal = null;
+            document.getElementById('zoneProgress').style.display = 'block';
+            document.getElementById('startBtn').disabled = true;
+            document.getElementById('currentInstruction').style.display = 'block';
+            
+            // Show initial instruction
+            showInstruction('<i class="fas fa-bullseye"></i> Get ready to move to Zone 1...');
+            updateVoiceText('<i class="fas fa-bullseye"></i> Starting zone scan! Prepare to move...');
+            
+            // Detailed voice instructions with proper queueing
+            clearVoiceQueue();
+            speakQueued('Welcome to the zone scanner. Here is how it works.', 0);
+            speakQueued('I will tell you which zone to stand in. Walk to that zone, and then stand completely still.', 0);
+            speakQueued('The scan takes about 35 seconds per zone. I will tell you if the signal is getting better or worse.', 0);
+            speakQueued('Ready? Let us begin. Please walk to Zone 1 now.', 0);
+            
+            // Update UI and start scanning
+            setTimeout(() => {
+                showInstruction(`<i class="fas fa-map-marker-alt"></i> Walk to Zone 1: ${zoneConfig.zones[0]}`);
+                setTimeout(() => scanCurrentZone(), 2000);
+            }, 20000); // Wait for voice instructions to complete
+        }
+        
+        function scanCurrentZone() {
+            const zoneIndex = zoneConfig.currentZone;
+            const zoneName = zoneConfig.zones[zoneIndex];
+            
+            // Highlight current zone
+            document.querySelectorAll('.grid-cell').forEach(cell => {
+                cell.classList.remove('active');
+            });
+            document.getElementById(`zone${zoneIndex}`).classList.add('active');
+            
+            showInstruction(`<i class="fas fa-search"></i> Scanning Zone ${zoneIndex + 1}: ${zoneName} - STAND STILL!`);
+            updateVoiceText(`<i class="fas fa-signal"></i> Scanning Zone ${zoneIndex + 1}: ${zoneName}... Please don't move!`);
+            
+            // Queued voice announcements
+            speakQueued(`Now scanning zone ${zoneIndex + 1}, ${zoneName}.`, 0);
+            speakQueued('Please stand completely still for 35 seconds while I collect data.', 0);
+            
+            zoneConfig.sampleCount = 0;
+            const samples = [];
+            
+            // Collect samples for this zone from REAL Raspberry Pi data
+            zoneConfig.scanInterval = setInterval(() => {
+                // Fetch current signal data from Raspberry Pi endpoint
+                fetch('/api/scan_data')
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.signal) {
+                            samples.push(data.signal);
+                            zoneConfig.sampleCount++;
+                            
+                            // Update progress bar
+                            const progress = (zoneConfig.sampleCount / zoneConfig.targetSamples) * 100;
+                            document.getElementById('progressBar').style.width = progress + '%';
+                            document.getElementById('progressPercent').textContent = Math.round(progress) + '%';
+                            
+                            // Show current signal in real-time
+                            updateVoiceText(`<i class="fas fa-signal"></i> Zone ${zoneIndex + 1}: Collecting... (Sample ${zoneConfig.sampleCount}/${zoneConfig.targetSamples}) - Current: ${data.signal.toFixed(1)} dBm`);
+                            
+                            // If we have enough samples, analyze zone
+                            if (zoneConfig.sampleCount >= zoneConfig.targetSamples) {
+                                clearInterval(zoneConfig.scanInterval);
+                                
+                                // Add delay before analysis for more natural feel
+                                setTimeout(() => {
+                                    analyzeZone(samples, zoneIndex, zoneName);
+                                }, 1000);
+                            }
+                        }
+                    })
+                    .catch(err => {
+                        console.error('Error fetching signal data:', err);
+                        // Continue even if one sample fails
+                    });
+            }, 500);  // Sample every 500ms = 40 samples in 20 seconds (slower, more accurate)
+        }
+        
+        function analyzeZone(samples, zoneIndex, zoneName) {
+            // Calculate average signal
+            const avgSignal = samples.reduce((a, b) => a + b, 0) / samples.length;
+            const minSignal = Math.min(...samples);
+            const maxSignal = Math.max(...samples);
+            
+            // FIXED COLOR CODING - Proper green for good signals
+            let quality, color, qualityText;
+            if (avgSignal >= -50) {
+                quality = 'excellent';
+                color = '#00C853';  // Bright green for excellent
+                qualityText = 'EXCELLENT! ðŸŽ‰';
+            } else if (avgSignal >= -60) {
+                quality = 'very good';
+                color = '#4CAF50';  // Standard green for very good
+                qualityText = 'VERY GOOD! ðŸ‘';
+            } else if (avgSignal >= -70) {
+                quality = 'good';
+                color = '#8BC34A';  // Light green for good
+                qualityText = 'GOOD âœ“';
+            } else if (avgSignal >= -80) {
+                quality = 'fair';
+                color = '#FFC107';  // Yellow for fair
+                qualityText = 'FAIR <i class="fas fa-exclamation-triangle"></i>';
+            } else {
+                quality = 'poor';
+                color = '#FF5252';  // Red for poor
+                qualityText = 'POOR âŒ';
+            }
+            
+            // Store zone data
+            zoneConfig.zoneData.push({
+                zone: zoneIndex + 1,
+                name: zoneName,
+                avgSignal: avgSignal,
+                minSignal: minSignal,
+                maxSignal: maxSignal,
+                quality: quality,
+                color: color
+            });
+            
+            // Color the zone - Remove animations first to prevent overlap
+            const zoneDiv = document.getElementById(`zone${zoneIndex}`);
+            zoneDiv.style.animation = 'none';
+            zoneDiv.classList.remove('active');
+            
+            // Force reflow to ensure animation stops
+            void zoneDiv.offsetWidth;
+            
+            // Apply color and mark as done
+            zoneDiv.style.background = color;
+            zoneDiv.style.color = 'white';
+            zoneDiv.style.transform = 'scale(1)';
+            zoneDiv.classList.add('done');
+            
+            // Compare with previous zone (Hot/Cold feedback)
+            let comparisonText = '';
+            let voiceFeedback = '';
+            let voiceQuality = '';
+            
+            // Natural voice feedback for quality - MORE VARIETY
+            if (quality === 'excellent') {
+                const excellentPhrases = [
+                    `Zone ${zoneIndex + 1}, ${zoneName}. The signal here is excellent! ${avgSignal.toFixed(0)} dBm. This is a fantastic spot for your router!`,
+                    `Zone ${zoneIndex + 1}, ${zoneName}. Wow! The signal strength is excellent at ${avgSignal.toFixed(0)} dBm. This zone is performing beautifully!`,
+                    `Zone ${zoneIndex + 1}, ${zoneName}. Outstanding! With ${avgSignal.toFixed(0)} dBm, this is an excellent location!`
+                ];
+                voiceQuality = excellentPhrases[zoneIndex % excellentPhrases.length];
+            } else if (quality === 'very good') {
+                const veryGoodPhrases = [
+                    `Zone ${zoneIndex + 1}, ${zoneName}. Signal strength is very good here, ${avgSignal.toFixed(0)} dBm. This is a strong spot!`,
+                    `Zone ${zoneIndex + 1}, ${zoneName}. Very nice! ${avgSignal.toFixed(0)} dBm is a very good signal. This zone is working well!`,
+                    `Zone ${zoneIndex + 1}, ${zoneName}. Great signal! At ${avgSignal.toFixed(0)} dBm, this is definitely a very good spot!`
+                ];
+                voiceQuality = veryGoodPhrases[zoneIndex % veryGoodPhrases.length];
+            } else if (quality === 'good') {
+                const goodPhrases = [
+                    `Zone ${zoneIndex + 1}, ${zoneName}. Signal is good here, ${avgSignal.toFixed(0)} dBm. This is a solid spot that will work nicely.`,
+                    `Zone ${zoneIndex + 1}, ${zoneName}. The reading shows ${avgSignal.toFixed(0)} dBm. That's good signal strength!`,
+                    `Zone ${zoneIndex + 1}, ${zoneName}. Good results! ${avgSignal.toFixed(0)} dBm means this zone has reliable coverage.`
+                ];
+                voiceQuality = goodPhrases[zoneIndex % goodPhrases.length];
+            } else if (quality === 'fair') {
+                const fairPhrases = [
+                    `Zone ${zoneIndex + 1}, ${zoneName}. Signal is fair, ${avgSignal.toFixed(0)} dBm. It's okay, but we might find a better spot.`,
+                    `Zone ${zoneIndex + 1}, ${zoneName}. With ${avgSignal.toFixed(0)} dBm, the signal here is fair. Not bad, but not great either.`,
+                    `Zone ${zoneIndex + 1}, ${zoneName}. The signal registers at ${avgSignal.toFixed(0)} dBm. That's fair, but let's see if we can do better!`
+                ];
+                voiceQuality = fairPhrases[zoneIndex % fairPhrases.length];
+            } else {
+                const poorPhrases = [
+                    `Zone ${zoneIndex + 1}, ${zoneName}. Signal is poor, ${avgSignal.toFixed(0)} dBm. This is not a good spot for your router.`,
+                    `Zone ${zoneIndex + 1}, ${zoneName}. Unfortunately, ${avgSignal.toFixed(0)} dBm is poor signal. This zone isn't ideal.`,
+                    `Zone ${zoneIndex + 1}, ${zoneName}. The signal here is weak at ${avgSignal.toFixed(0)} dBm. We definitely need to find a better location!`
+                ];
+                voiceQuality = poorPhrases[zoneIndex % poorPhrases.length];
+            }
+            
+            // Hot/Cold comparison - MORE VARIETY
+            if (zoneConfig.previousSignal !== null) {
+                const diff = avgSignal - zoneConfig.previousSignal;
+                if (diff > 5) {
+                    comparisonText = '<i class="fas fa-fire" style="color: #FF6B35;"></i> WARMER! This zone is BETTER than the previous one!';
+                    const warmerPhrases = [
+                        'You are getting warmer! This zone has better signal than the last one.',
+                        'Great! This location is an improvement. The signal is stronger here than the previous zone.',
+                        'Nice! You are moving in the right direction. This zone beats the last one!',
+                        'Excellent progress! The signal here is better than where you just were.'
+                    ];
+                    voiceFeedback = warmerPhrases[zoneIndex % warmerPhrases.length];
+                } else if (diff < -5) {
+                    comparisonText = '<i class="fas fa-snowflake" style="color: #4FC3F7;"></i> COLDER! The previous zone was better.';
+                    const colderPhrases = [
+                        'You are getting colder. The previous zone had better signal.',
+                        'Hmm, the signal is weaker here. The last zone was actually better.',
+                        'This zone is not as strong. You had better coverage in the previous location.',
+                        'The signal dropped compared to the last zone. That previous spot was stronger.'
+                    ];
+                    voiceFeedback = colderPhrases[zoneIndex % colderPhrases.length];
+                } else {
+                    comparisonText = '<i class="fas fa-arrows-alt-h" style="color: #9E9E9E;"></i> About the same as the previous zone.';
+                    const samePhrases = [
+                        'The signal here is about the same as the previous zone.',
+                        'This zone has similar signal strength to the last one.',
+                        'No significant change. This zone performs about the same as the previous one.',
+                        'The coverage here is comparable to where you just were.'
+                    ];
+                    voiceFeedback = samePhrases[zoneIndex % samePhrases.length];
+                }
+            }
+            
+            zoneConfig.previousSignal = avgSignal;
+            
+            // Update UI
+            showInstruction(`<i class="fas fa-check-circle"></i> Zone ${zoneIndex + 1} Complete: ${avgSignal.toFixed(1)} dBm - ${qualityText}`);
+            updateVoiceText(`Zone ${zoneIndex + 1}: ${avgSignal.toFixed(1)} dBm - ${qualityText}\\n${comparisonText}`);
+            
+            // Queued voice announcements - no overlaps!
+            speakQueued(voiceQuality, 0);
+            if (voiceFeedback) {
+                speakQueued(voiceFeedback, 0);
+            }
+            
+            document.getElementById('gridStatus').textContent = 
+                `Zone ${zoneIndex + 1}/${zoneConfig.zones.length}: ${avgSignal.toFixed(1)} dBm - ${qualityText}`;
+            
+            // Move to next zone or finish
+            zoneConfig.currentZone++;
+            if (zoneConfig.currentZone < zoneConfig.zones.length) {
+                // Reset progress bar
+                document.getElementById('progressBar').style.width = '0%';
+                document.getElementById('progressPercent').textContent = '0%';
+                
+                // Give user MORE time to prepare before next zone
+                setTimeout(() => {
+                    const nextZoneName = zoneConfig.zones[zoneConfig.currentZone];
+                    showInstruction(`<i class="fas fa-map-marker-alt"></i> Next: Walk to Zone ${zoneConfig.currentZone + 1} - ${nextZoneName}`);
+                    updateVoiceText(`Preparing for Zone ${zoneConfig.currentZone + 1}...`);
+                    
+                    // Varied transition phrases
+                    const transitionPhrases = [
+                        `Okay. Now, please walk to zone ${zoneConfig.currentZone + 1}, ${nextZoneName}.`,
+                        `Alright! Let's move on. Please head over to zone ${zoneConfig.currentZone + 1}, ${nextZoneName}.`,
+                        `Great work! Next, walk to zone ${zoneConfig.currentZone + 1}, ${nextZoneName}.`,
+                        `Perfect! Now let's check zone ${zoneConfig.currentZone + 1}, ${nextZoneName}. Please walk there now.`
+                    ];
+                    const readyPhrases = [
+                        'Get ready. I will start scanning in a moment.',
+                        'Once you are in position and standing still, I will begin the scan.',
+                        'Find your spot and hold still. Scanning will start shortly.',
+                        'Position yourself in that zone. The scan will begin in just a moment.'
+                    ];
+                    
+                    speakQueued(transitionPhrases[zoneConfig.currentZone % transitionPhrases.length], 0);
+                    speakQueued(readyPhrases[zoneConfig.currentZone % readyPhrases.length], 0);
+                }, 10000); // Increased from 8s to 10s
+                
+                setTimeout(() => scanCurrentZone(), voiceFeedback ? 15000 : 13000);
+            } else {
+                setTimeout(() => finishZoneScan(), 6000);
+            }
+        }
+        
+        function finishZoneScan() {
+            document.getElementById('zoneProgress').style.display = 'none';
+            
+            // Find best zone
+            const bestZone = zoneConfig.zoneData.reduce((best, current) => 
+                current.avgSignal > best.avgSignal ? current : best
+            );
+            
+            // Display results
+            const resultsPanel = document.getElementById('zoneResultsPanel');
+            resultsPanel.style.display = 'block';
+            
+            let resultsHTML = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">';
+            
+            zoneConfig.zoneData.forEach(zone => {
+                resultsHTML += `
+                    <div style="padding: 15px; background: ${zone.color}; color: white; border-radius: 10px; text-align: center;">
+                        <h3>Zone ${zone.zone}: ${zone.name}</h3>
+                        <div style="font-size: 2em; margin: 10px 0;">${zone.avgSignal.toFixed(1)} dBm</div>
+                        <div style="font-size: 1.2em;">${zone.quality.toUpperCase()}</div>
+                        <div style="font-size: 0.9em; margin-top: 5px;">Range: ${zone.minSignal.toFixed(1)} to ${zone.maxSignal.toFixed(1)}</div>
+                    </div>
+                `;
+            });
+            
+            resultsHTML += '</div>';
+            document.getElementById('zoneResults').innerHTML = resultsHTML;
+            
+            // Best zone announcement
+            const bestZoneDiv = document.getElementById('bestZone');
+            bestZoneDiv.innerHTML = `
+                <h2 style="margin-bottom: 10px;"><i class="fas fa-trophy"></i> BEST ZONE: Zone ${bestZone.zone}</h2>
+                <div style="font-size: 1.5em;">${bestZone.name}</div>
+                <div style="font-size: 2em; margin: 15px 0;">${bestZone.avgSignal.toFixed(1)} dBm</div>
+                <div>Place your router here for optimal WiFi coverage!</div>
+            `;
+            
+            showInstruction(`<i class="fas fa-trophy"></i> SCAN COMPLETE! Best spot: Zone ${bestZone.zone} - ${bestZone.name}`);
+            updateVoiceText(`<i class="fas fa-check-circle"></i> All zones scanned! Best zone: Zone ${bestZone.zone} - ${bestZone.name} (${bestZone.avgSignal.toFixed(1)} dBm)`);
+            
+            // Queued final announcements with MORE VARIETY - no overlaps!
+            const completionPhrases = [
+                'Excellent! I have finished scanning all the zones.',
+                'Wonderful! We have completed the full zone scan.',
+                'All done! I have analyzed every zone in your space.',
+                'Perfect! The complete scan is finished.'
+            ];
+            const bestZonePhrases = [
+                `The best zone for your router is zone ${bestZone.zone}, which is ${bestZone.name}.`,
+                `Based on my analysis, zone ${bestZone.zone}, ${bestZone.name}, is your optimal location.`,
+                `Zone ${bestZone.zone}, ${bestZone.name}, came out on top as the best spot.`,
+                `The winner is zone ${bestZone.zone}, ${bestZone.name}. That is your best location!`
+            ];
+            const detailPhrases = [
+                `This zone had an average signal strength of ${bestZone.avgSignal.toFixed(0)} d B m, which is ${bestZone.quality}.`,
+                `With ${bestZone.avgSignal.toFixed(0)} d B m, this zone achieved ${bestZone.quality} signal strength.`,
+                `The signal measured ${bestZone.avgSignal.toFixed(0)} d B m there, giving it a ${bestZone.quality} rating.`,
+                `At ${bestZone.avgSignal.toFixed(0)} d B m, this location scored ${bestZone.quality} performance.`
+            ];
+            const finalPhrases = [
+                'For the best WiFi coverage in your home, place your router in this zone.',
+                'I recommend placing your router in this zone for optimal performance.',
+                'To get the strongest WiFi throughout your home, set up your router here.',
+                'Put your router in this zone, and you will have the best possible coverage!'
+            ];
+            
+            const phraseIndex = Math.floor(Math.random() * 4);
+            speakQueued(completionPhrases[phraseIndex], 0);
+            speakQueued(bestZonePhrases[phraseIndex], 0);
+            speakQueued(detailPhrases[phraseIndex], 0);
+            speakQueued(finalPhrases[phraseIndex], 0);
+            
+            document.getElementById('gridStatus').textContent = `<i class="fas fa-check-circle"></i> Scan Complete! Best: Zone ${bestZone.zone} - ${bestZone.name}`;
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('currentInstruction').style.display = 'none';
+        }
+        
+        function stopZoneScan() {
+            if (zoneConfig.scanInterval) {
+                clearInterval(zoneConfig.scanInterval);
+            }
+            zoneConfig = {
+                mode: null,
+                currentZone: 0,
+                zones: [],
+                zoneData: [],
+                previousSignal: null,
+                scanInterval: null,
+                scanDuration: 12000,
+                sampleCount: 0,
+                targetSamples: 20
+            };
+            document.getElementById('gridDisplay').innerHTML = '';
+            document.getElementById('gridStatus').textContent = 'Status: Select zone mode to begin';
+            document.getElementById('zoneProgress').style.display = 'none';
+            document.getElementById('zoneResultsPanel').style.display = 'none';
+            document.getElementById('currentInstruction').style.display = 'none';
+            document.getElementById('startBtn').disabled = true;
+            updateVoiceText('<i class="fas fa-microphone"></i> Ready to start zone scanning...');
+            speakQueued('Zone scan stopped. Select a zone mode to restart.');
+        }
+        
+        function showInstruction(text) {
+            const instructionDiv = document.getElementById('currentInstruction');
+            instructionDiv.innerHTML = text;
+            instructionDiv.style.display = 'block';
+        }
+        
+        function updateVoiceText(text) {
+            document.getElementById('voiceText').innerHTML = text;
+        }
+        
+        // FIXED VOICE SYSTEM - No overlap, proper queueing
+        let voiceQueue = [];
+        let isVoicePlaying = false;
+        
+        function speak(text) {
+            // Direct speak without queue (for immediate feedback)
+            fetch('/api/speak', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({text: text})
+            });
+        }
+        
+        function speakQueued(text, delay = 0) {
+            // Add to queue with optional delay
+            voiceQueue.push({text: text, delay: delay});
+            
+            // Process queue if not already playing
+            if (!isVoicePlaying) {
+                processVoiceQueue();
+            }
+        }
+        
+        function processVoiceQueue() {
+            if (voiceQueue.length === 0) {
+                isVoicePlaying = false;
+                return;
+            }
+            
+            isVoicePlaying = true;
+            const item = voiceQueue.shift();
+            
+            setTimeout(() => {
+                fetch('/api/speak', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({text: item.text})
+                }).then(() => {
+                    // INCREASED buffer to prevent voice cutoff - especially for longer sentences
+                    const words = item.text.split(' ').length;
+                    const estimatedDuration = (words / 140) * 60 * 1000; // Slower: 140 words/min
+                    const waitTime = Math.max(estimatedDuration + 3000, 5000); // At least 5 seconds, +3s buffer
+                    
+                    console.log(`â±ï¸ Waiting ${waitTime}ms for speech: "${item.text.substring(0, 30)}..."`);
+                    
+                    setTimeout(() => {
+                        processVoiceQueue();
+                    }, waitTime);
+                }).catch(err => {
+                    console.error('Voice error:', err);
+                    // Continue queue even on error
+                    setTimeout(() => processVoiceQueue(), 2000);
+                });
+            }, item.delay);
+        }
+        
+        function clearVoiceQueue() {
+            voiceQueue = [];
+            isVoicePlaying = false;
+        }
+        
+        // Legacy grid functions (kept for compatibility)
+        function startGridScan() {
+            selectZoneMode(9);
+            setTimeout(() => startZoneScan(), 1000);
+        }
+        
+        function stopGridScan() {
+            stopZoneScan();
+        }
+        
+        // Chat functions
+        let chatHistory = [];  // Store conversation history
+        
+        async function sendChat() {
+            const input = document.getElementById('chatInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const messagesDiv = document.getElementById('chatMessages');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message to history
+            chatHistory.push({role: 'user', content: message});
+            
+            // Add user message to UI
+            const userMsg = document.createElement('div');
+            userMsg.className = 'chat-message user';
+            userMsg.textContent = message;
+            messagesDiv.appendChild(userMsg);
+            
+            // Clear input and disable
+            input.value = '';
+            input.disabled = true;
+            sendBtn.disabled = true;
+            
+            // Show typing indicator
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing';
+            typingDiv.textContent = 'Magenta is thinking...';
+            typingDiv.id = 'typing';
+            messagesDiv.appendChild(typingDiv);
+            
+            // Scroll to bottom
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            
+            try {
+                // Send to server with conversation history
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        message: message,
+                        history: chatHistory  // Send conversation context
+                    })
+                });
+                
+                const data = await response.json();
+                
+                // Remove typing indicator
+                document.getElementById('typing').remove();
+                
+                // Add AI response to history
+                chatHistory.push({role: 'assistant', content: data.response});
+                
+                // Format response (convert markdown-like formatting to HTML)
+                let formattedResponse = data.response
+                    .replace(/\\*\\*(.*?)\\*\\*/g, '<strong>$1</strong>')  // Bold
+                    .replace(/\\*(.*?)\\*/g, '<em>$1</em>')  // Italic
+                    .replace(/`(.*?)`/g, '<code>$1</code>')  // Inline code
+                    .replace(/\\n\\n/g, '</p><p>')  // Paragraphs
+                    .replace(/\\n- /g, '<br>â€¢ ')  // Bullet points
+                    .replace(/\\n\\d+\\. /g, '<br>');  // Numbered lists
+                
+                // Add AI response to UI
+                const aiMsg = document.createElement('div');
+                aiMsg.className = 'chat-message ai';
+                aiMsg.innerHTML = '<strong style="color: #E20074;">Magenta:</strong> <p>' + formattedResponse + '</p>';
+                messagesDiv.appendChild(aiMsg);
+                
+            } catch (error) {
+                document.getElementById('typing').remove();
+                const errorMsg = document.createElement('div');
+                errorMsg.className = 'chat-message ai';
+                errorMsg.innerHTML = '<strong style="color: #E20074;">Magenta:</strong> Sorry, I encountered an error. Please try again.';
+                messagesDiv.appendChild(errorMsg);
+            }
+            
+            // Re-enable input
+            input.disabled = false;
+            sendBtn.disabled = false;
+            input.focus();
+            
+            // Scroll to bottom
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+        
+        // Theme Toggle Function
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            body.classList.toggle('light-mode');
+            
+            if (body.classList.contains('light-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        // Load saved theme on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (savedTheme === 'light') {
+                body.classList.add('light-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        });
+        
+        console.log('âœ… ALL JavaScript loaded successfully! Functions ready.');
+    </script>
+</body>
+</html>
+    """)

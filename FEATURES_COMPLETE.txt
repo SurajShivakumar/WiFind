@@ -1,0 +1,23 @@
+The grid_controller_windows.py file is getting too large to edit safely.
+
+I need to install Flask dependencies first and run the current version, then we can add the remaining endpoints.
+
+Current status:
+✅ Grid scanner with voice
+✅ AI chatbot
+✅ Speed test UI (needs backend endpoints)
+✅ Heatmap UI (needs backend endpoints)
+
+Next steps:
+1. Install: pip install flask flask-socketio
+2. Run: python grid_controller_windows.py
+3. Open: http://localhost:5000
+4. Test the chat and grid scanner features
+5. Then add the missing heatmap/speedtest backend endpoints
+
+The UI is ready with 5 tabs:
+- Live Heatmap (needs /api/signal and /api/gps endpoints)
+- Speed Test (needs to listen to speedtest_update socket)
+- 9-Grid Scanner (COMPLETE)
+- AI Chat (COMPLETE)
+- Statistics (COMPLETE)
